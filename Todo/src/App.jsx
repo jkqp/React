@@ -10,8 +10,10 @@ function App() {
   })
   const [inputValue, setInputValue] = useState('')
   const [dueDate, setDueDate] = useState('')
+  const [category, setCategory] = useState('')
   const [editTodo, setEditTodo] = useState(null)
   const [editText, setEditText] = useState('')
+  const [editCategory, setEditCategory] = useState('')
 
   useEffect(() => {
     localStorage.setItem('todos', JSON.stringify(todos))
@@ -26,29 +28,34 @@ function App() {
       text: inputValue,
       completed: false,
       dueDate: dueDate,
+      category: category,
     }
 
     setTodos([...todos, newTodo])
     setInputValue('')
     setDueDate('')
+    setCategory('')
   }
 
-  const startEdit = (id, currenttext) => {
+  const startEdit = (id, currenttext, currentCategory) => {
     setEditTodo(id)
     setEditText(currenttext)
+    setEditCategory(currentCategory)
   }
 
   const saveEdit = (id) => {
     setTodos(todos.map(todo =>
-      todo.id === id ? { ...todo, text: editText } : todo
+      todo.id === id ? { ...todo, text: editText, category: editCategory } : todo
     ))
     setEditTodo(null)
     setEditText('')
+    setEditCategory('')
   }
 
   const cancelEdit = () => {
     setEditTodo(null)
     setEditText('')
+    setEditCategory('')
   }
 
   // Delete a todo by id
@@ -105,6 +112,16 @@ function App() {
             onChange={(e) => setDueDate(e.target.value)}
             className="date-input"
           />
+          <select
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
+            className="category-select"
+          >
+            <option value="">Category</option>
+            <option value="Work">Work</option>
+            <option value="Cleaning">Cleaning</option>
+            <option value="Life">Life</option>
+          </select>
           <button onClick={addTodo} className="add-btn">
             Add Task
           </button>
@@ -128,10 +145,12 @@ function App() {
                 todo={todo}
                 isEditing={editTodo === todo.id}
                 editText={editText}
+                editCategory={editCategory}
                 onToggle={() => toggleTodo(todo.id)}
                 onDelete={() => deleteTodo(todo.id)}
-                onEdit={() => startEdit(todo.id, todo.text)}
+                onEdit={() => startEdit(todo.id, todo.text, todo.category)}
                 onEditChange={setEditText}
+                onEditCategoryChange={setEditCategory}
                 onSaveEdit={saveEdit}
                 onCancelEdit={cancelEdit}
               />
