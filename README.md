@@ -18,5 +18,6 @@ We are aiming to learn the following react library concepts with this task
 - Event Handling
 - Conditional Rendering
 
-<img width="446" height="587" alt="image" src="https://github.com/user-attachments/assets/83fbb13d-7be2-4603-884e-dfada672f78d" />
+<img width="596" height="658" alt="image" src="https://github.com/user-attachments/assets/2275415a-8a67-47fc-9603-d3afb1e80d27" />
+
 
