@@ -17,3 +17,5 @@ We are aiming to learn the following react library concepts with this task
 - Props & Callbacks
 - Event Handling
 - Conditional Rendering
+
+<img width="451" height="585" alt="image" src="https://github.com/user-attachments/assets/b184a398-7030-4494-b2d1-d3732be04e16" />
