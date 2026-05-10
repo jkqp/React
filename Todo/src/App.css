@@ -102,6 +102,26 @@ main {
   transform: scale(0.98);
 }
 
+.complete-btn {
+  padding: 12px 24px;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.complete-btn:hover {
+  background-color: var(--primary-hover);
+}
+
+.complete-btn:active {
+  transform: scale(0.98);
+}
+
 .stats {
   text-align: center;
   margin-bottom: 25px;
@@ -188,6 +208,28 @@ main {
 
 .delete-btn:active {
   transform: scale(0.95);
+}
+
+.complete-btn {
+  width: 100%;
+  padding: 12px 24px;
+  background-color: var(--secondary-color);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 15px;
+}
+
+.complete-btn:hover {
+  background-color: var(--secondary-hover);
+}
+
+.complete-btn:active {
+  transform: scale(0.98);
 }
 
 /* Responsive design */

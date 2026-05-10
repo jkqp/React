@@ -26,6 +26,11 @@ function App() {
     setTodos(todos.filter(todo => todo.id !== id))
   }
 
+  // Clear Completed
+  const clearCompleted = () => {
+    setTodos(todos.filter(todo => !todo.completed))
+  }
+
   // Toggle completed status
   const toggleTodo = (id) => {
     setTodos(todos.map(todo =>
@@ -87,6 +92,12 @@ function App() {
             ))
           )}
         </div>
+        {/* Clear completed button */}
+        {completedCount > 0 && (
+          <button onClick={clearCompleted} className="complete-btn">
+            Clear Completed
+          </button>
+        )}
       </main>
     </div>
   )
