@@ -9,6 +9,7 @@ function App() {
     return stored ? JSON.parse(stored) : []
   })
   const [inputValue, setInputValue] = useState('')
+  const [dueDate, setDueDate] = useState('')
   const [editTodo, setEditTodo] = useState(null)
   const [editText, setEditText] = useState('')
 
@@ -24,10 +25,12 @@ function App() {
       id: Date.now(), // Simple unique ID using timestamp
       text: inputValue,
       completed: false,
+      dueDate: dueDate,
     }
 
     setTodos([...todos, newTodo])
     setInputValue('')
+    setDueDate('')
   }
 
   const startEdit = (id, currenttext) => {
@@ -95,6 +98,12 @@ function App() {
             onKeyPress={handleKeyPress}
             placeholder="Add a new task..."
             className="todo-input"
+          />
+          <input
+            type="date"
+            value={dueDate}
+            onChange={(e) => setDueDate(e.target.value)}
+            className="date-input"
           />
           <button onClick={addTodo} className="add-btn">
             Add Task

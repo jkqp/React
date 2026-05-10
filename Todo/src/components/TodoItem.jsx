@@ -30,7 +30,12 @@ export default function TodoItem({
         />
       ) : (
         // Normal mode
-        <span className="todo-text">{todo.text}</span>
+        <div className="todo-text-group">
+          <span className="todo-text">{todo.text}</span>
+          {todo.dueDate && (
+            <span className="todo-due-date">Due {todo.dueDate}</span>
+          )}
+        </div>
       )}
       
       {/* CONDITIONAL: Show normal buttons OR save/cancel buttons */}
