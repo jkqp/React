@@ -6,19 +6,39 @@ function App() {
   // State management: todos array and input field
   const [todos, setTodos] = useState([])
   const [inputValue, setInputValue] = useState('')
+  const [editTodo, setEditTodo] = useState(null)
+  const [editText, setEditText] = useState('')
 
   // Add a new todo
   const addTodo = () => {
     if (inputValue.trim() === '') return
-    
+
     const newTodo = {
       id: Date.now(), // Simple unique ID using timestamp
       text: inputValue,
       completed: false,
     }
-    
+
     setTodos([...todos, newTodo])
     setInputValue('')
+  }
+
+  const startEdit = (id, currenttext) => {
+    setEditTodo(id)
+    setEditText(currenttext)
+  }
+
+  const saveEdit = (id) => {
+    setTodos(todos.map(todo =>
+      todo.id === id ? { ...todo, text: editText } : todo
+    ))
+    setEditTodo(null)
+    setEditText('')
+  }
+
+  const cancelEdit = () => {
+    setEditTodo(null)
+    setEditText('')
   }
 
   // Delete a todo by id
@@ -29,6 +49,10 @@ function App() {
   // Clear Completed
   const clearCompleted = () => {
     setTodos(todos.filter(todo => !todo.completed))
+  }
+
+  // Edit Task
+  const editTask = (id, editText) => {
   }
 
   // Toggle completed status
@@ -86,8 +110,14 @@ function App() {
               <TodoItem
                 key={todo.id}
                 todo={todo}
+                isEditing={editTodo === todo.id}
+                editText={editText}
                 onToggle={() => toggleTodo(todo.id)}
                 onDelete={() => deleteTodo(todo.id)}
+                onEdit={() => startEdit(todo.id, todo.text)}
+                onEditChange={setEditText}
+                onSaveEdit={saveEdit}
+                onCancelEdit={cancelEdit}
               />
             ))
           )}
