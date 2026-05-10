@@ -1,13 +1,20 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import TodoItem from './components/TodoItem'
 import './App.css'
 
 function App() {
   // State management: todos array and input field
-  const [todos, setTodos] = useState([])
+  const [todos, setTodos] = useState(() => {
+    const stored = localStorage.getItem('todos')
+    return stored ? JSON.parse(stored) : []
+  })
   const [inputValue, setInputValue] = useState('')
   const [editTodo, setEditTodo] = useState(null)
   const [editText, setEditText] = useState('')
+
+  useEffect(() => {
+    localStorage.setItem('todos', JSON.stringify(todos))
+  }, [todos])
 
   // Add a new todo
   const addTodo = () => {
